@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row, Button } from "react-bootstrap";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-const token: string | undefined = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
+const token: string | undefined = "API_Token";
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout;

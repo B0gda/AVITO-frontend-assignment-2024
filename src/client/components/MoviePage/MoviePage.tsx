@@ -176,7 +176,7 @@ interface Movie {
   };
 }
 
-const token: string | undefined = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
+const token: string | undefined = "API_token";
 
 const MoviePage = () => {
   const { id } = useParams<{ id: string }>();
