@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# Поиск информации по фильмама и сералам через API "***Кинопоиска***"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Описание проекта
+Разработан фронтенд приложения для быстрого поиска информации по фильмам и сериалам с платформы «***Кинопоиска***». 
 
-## Available Scripts
+---
+## Реализованные функции
+Приложение состоит из двух компонентов: 
+1. Страница со списком фильмов,сериалов.
+2. Страница с подробной информацией о фильме.
 
-In the project directory, you can run:
+Страница со списком всех фильмов содержит функционал:
+* Отображжение списка фильмов и сериалов в табличном виде.
+* Наличие пагинации.
+* Выбор количества фильмов для показа на странице (по умолчанию 10).
+* Отфильтрованная выдача (по году, стране и возрастному рейтингу).
+* Реализован поиск по названию фильма.
+Страница с отдельным фильмом содержит функционал:
+* Отображение информации о фильме или сериале:
+    * Название фильма/сериала.
+    * Описание.
+    * Рейтинг.
+* Отображение списка актёров (с пагинацией, если их больше 10).
+* Отображение списка сезонов и серий (с пагинацией, если они подразумеваются).
+* Реализован вывод списка фильмов, похожих на текущий, в виде «карусели». По каждому элементу можно кликнуть и открыть его страницу.
+* В случае, если какой-то из списков пустой (список отзывов, актёров, сезонов), реализовано скрытие раздела.
+* Реализована кнопка «назад», которая ведет на выдачу. Фильтры и номер страницы при этом сохраняются.
 
-### `npm start`
+---
+  
+## Стэк технологий
+* Фронтенд фреймворк: *React*, версия 18.
+* Библиотека компонент: *react-bootstrap*.
+* Сборщик: *Webpack*.
+* *Node.js: 18*.
+* Пакетный менеджер: *npm*.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Дополнительные особенности:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* Реализован адаптивный интерфейс: с приложением удобно работать как с мобильного экрана, так и с десктопа.
+* Роутинг выполнен с использованием *React Router v6*.
+* При переходах по ссылкам страница не перезагружается (*SPA*, без *next.js*).
+* Использование ***TypeScript***.
+* Проект доступен по ссылке http://localhost:7070.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Запуск проекта
+Для запуска проекта используйте команду `npm run start`.
+Также дополнительно внутри компонент, необходимо добавить TOKEN для работы API. В директории ` src/client/components ` необходимо в компоненты ` MovieList.tsx ` и ` MoviePage.tsx ` вставить ваш токен в строке:
+> const token: string | undefined = "API_Token";
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Проблемы и их решения
+##### ***Проблема 1***:
+Установленный *React-Bootstrap* стили частично перестали работать.
+##### ***Решение***:
+> Вручную через style={{}} дописаны стили.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### ***Проблема 2***:
+При анализе JSON файлов, которые возвращает сервер на запрос конкретного фильма, не было обнаружено ни в одном фильме наличия постеров или отзывов.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##### ***Решение***:
+> Данные разделы не смогли быть реализованы. Фильмы, где присутствовали секции(Сезоны, Похожие) - реализован показ секций или их отсутствие, если в теле JSON не было информации.
 
-### `npm run eject`
+##### ***Проблема 3***:
+Не удалось наладить запуск проекта через команду `TOKEN=<Your_Token> npm run start`, так как *Webpack* отказывался сохранять token в файле `.env`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##### ***Решение***:
+> При запуске проекта удалось добиться работы проекта, вложив токен напрямую в переменные окружения компонент, где он используется.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
